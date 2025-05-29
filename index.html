@@ -1,168 +1,95 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>daily click</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <title>Daily Click</title>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
     body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
       color: white;
+      font-family: 'Segoe UI', sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
+      height: 100vh;
+      margin: 0;
       text-align: center;
-      padding: 20px;
-      animation: fadeIn 2s ease-in;
+      animation: fadeIn 1.5s ease-in;
     }
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 30px;
-      border-radius: 20px;
-      max-width: 400px;
-      width: 100%;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 0 25px rgba(0, 255, 255, 0.15);
-      animation: slideUp 1s ease-in-out;
-    }
-    @keyframes slideUp {
-      0% { transform: translateY(40px); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
+      from {opacity: 0;}
+      to {opacity: 1;}
     }
     h1 {
-      font-size: 1.8rem;
-      margin-bottom: 20px;
-      color: #00f7ff;
+      font-size: 2.5em;
+      margin: 0;
     }
     .status {
-      font-size: 1rem;
-      margin-bottom: 20px;
-      color: #ffffffcc;
-      animation: fadeIn 1s ease-in 0.5s both;
+      font-size: 1.2em;
+      margin: 10px 0;
+      color: #ffcc00;
     }
     .timer {
-      font-size: 1.5rem;
-      margin-bottom: 15px;
-      color: #ff4444;
+      font-size: 3em;
+      color: #00ffcc;
+      margin: 20px 0;
     }
-    .instruction {
-      margin: 15px 0;
-      font-size: 1rem;
-      color: #00ff99;
-    }
-    .instruction span {
-      color: #ffd700;
-    }
-    .btn {
-      display: block;
-      width: 100%;
-      background: linear-gradient(90deg, #00c6ff, #0072ff);
-      color: white;
-      padding: 12px;
-      margin: 10px 0;
-      border: none;
-      border-radius: 12px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
+    .button, .group-button {
+      background-color: #00ffcc;
+      color: #000;
+      padding: 12px 24px;
+      margin: 10px;
       text-decoration: none;
-      animation: pulse 2s infinite;
+      border-radius: 25px;
+      font-size: 1.2em;
+      transition: background 0.3s ease;
     }
-    .btn:hover {
-      transform: scale(1.05);
-    }
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(0, 255, 255, 0.4); }
-      70% { box-shadow: 0 0 0 10px rgba(0, 255, 255, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(0, 255, 255, 0); }
-    }
-    .group-btn {
-      background: linear-gradient(90deg, #ff8a00, #e52e71);
-    }
-    .group-btn:hover {
-      background: linear-gradient(90deg, #e52e71, #ff8a00);
-    }
-    .footer {
-      margin-top: 20px;
-      font-size: 0.9rem;
-      color: #ffffffaa;
+    .button:hover, .group-button:hover {
+      background-color: #00c9a7;
     }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1 id="heading">🔒 Daily Click Not Counted</h1>
-    <div class="status" id="status">
-      Click the button below to count your daily visit and unlock the reward.
-    </div>
-    <div class="timer" id="timer" style="display:none;"></div>
-    <div class="instruction" id="instruction" style="display:none;">
-      📸 Send screenshot to <span>@IPTVM3Y</span> on Telegram!
-    </div>
-    <a href="#" class="btn" id="clickBtn">🚀 Click to Count & Unlock</a>
-    <a href="https://t.me/muskchatt" class="btn group-btn">👥 Join Our Telegram Group</a>
-  </div>
-  <div class="footer">
-    Made with ❤️ for <strong>@IPTVM3Y</strong>
-  </div>
+  <h1>🖐 Daily Click Required</h1>
+  <div class="status" id="status">🔒 Not Counted Yet</div>
+  <a href="https://vp.mo/vplinkEXAMPLE" class="button">🔓 Unlock via Short Link</a>
+  <div class="timer" id="timer">00h 00m 00s</div>
+  <a href="https://t.me/muskchatt" class="group-button" target="_blank">📣 Join Telegram Group</a>
+
   <script>
-    const shortUrl = "https://vplink.in/PFgvMr";
-    const telegramChannel = "@muskchatt";
-    const telegramGroup = "https://t.me/muskchatt";function formatTime(seconds) {
-  const h = String(Math.floor(seconds / 3600)).padStart(2, '0');
-  const m = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
-  const s = String(seconds % 60).padStart(2, '0');
-  return `${h}h ${m}m ${s}s`;
-}
+    function formatTime(seconds) {
+      const h = String(Math.floor(seconds / 3600)).padStart(2, '0');
+      const m = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
+      const s = String(seconds % 60).padStart(2, '0');
+      return `${h}h ${m}m ${s}s`;
+    }
 
-function updateTimer() {
-  const firstClick = localStorage.getItem("dailyClick");
-  if (!firstClick) return;
-  const now = Date.now();
-  const elapsed = Math.floor((now - firstClick) / 1000);
-  const remaining = 86400 - (elapsed % 86400);
-  if (elapsed >= 86400) {
-    localStorage.removeItem("dailyClick");
-    location.reload();
-  } else {
-    document.getElementById("timer").textContent = `⏳ Next click available in: ${formatTime(remaining)}`;
-  }
-}
+    function updateTimer() {
+      const now = Date.now();
+      const firstClickTime = localStorage.getItem("clickUnlocked");
+      const status = document.getElementById("status");
 
-function showThankYouUI() {
-  document.getElementById("heading").textContent = "✅ Thanks for Your Daily Click!";
-  document.getElementById("status").textContent = "Your click has been recorded successfully.";
-  document.getElementById("timer").style.display = "block";
-  document.getElementById("instruction").style.display = "block";
-  document.getElementById("clickBtn").style.display = "none";
-  setInterval(updateTimer, 1000);
-  updateTimer();
-}
+      if (firstClickTime) {
+        const timeElapsed = Math.floor((now - parseInt(firstClickTime)) / 1000);
+        const timeRemaining = 86400 - (timeElapsed % 86400);
+        document.getElementById("timer").textContent = formatTime(timeRemaining);
 
-document.getElementById("clickBtn").addEventListener("click", function (e) {
-  e.preventDefault();
-  const now = Date.now();
-  localStorage.setItem("dailyClick", now);
-  window.location.href = shortUrl;
-});
+        if (timeElapsed >= 86400) {
+          localStorage.removeItem("clickUnlocked");
+          status.textContent = "🔒 Not Counted Yet";
+        } else {
+          status.textContent = "✅ Already Counted";
+        }
+      } else {
+        document.getElementById("timer").textContent = "00h 00m 00s";
+        status.textContent = "🔒 Not Counted Yet";
+      }
+    }
 
-if (localStorage.getItem("dailyClick")) {
-  showThankYouUI();
-}
-
+    setInterval(updateTimer, 1000);
+    updateTimer();
   </script>
 </body>
 </html>
