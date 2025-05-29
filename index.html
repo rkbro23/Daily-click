@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daily Click</title>
+  <style>
+    body {
+      background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 30px;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .status {
+      font-size: 20px;
+      margin-top: 20px;
+      color: #7CFC00;
+    }
+
+    .timer {
+      font-size: 36px;
+      color: red;
+      margin-top: 20px;
+    }
+
+    .btn {
+      background-color: #00bfff;
+      border: none;
+      color: white;
+      padding: 14px 28px;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 8px;
+      margin-top: 25px;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #0080ff;
+    }
+
+    .telegram {
+      margin-top: 30px;
+      font-size: 18px;
+    }
+
+    .telegram span {
+      color: yellow;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎉 THANK YOU FOR YOUR DAILY CLICK!</h1>
+  <div id="status" class="status">Click the button below</div>
+  <div id="timer" class="timer" style="display:none;"></div>
+  <button id="clickBtn" class="btn">🔓 Unlock Today's Link</button>
+
+  <div class="telegram">
+    Take a screenshot and send it to <span>@muskchatt</span>
+  </div>
+
+  <script>
+    const btn = document.getElementById("clickBtn");
+    const timer = document.getElementById("timer");
+    const status = document.getElementById("status");
+
+    const storedTime = localStorage.getItem("clickTime");
+    const now = new Date().getTime();
+
+    if (storedTime && now - storedTime < 24 * 60 * 60 * 1000) {
+      showCountdown();
+    }
+
+    btn.onclick = function () {
+      const clickTime = new Date().getTime();
+      localStorage.setItem("clickTime", clickTime.toString());
+      window.open("https://example.com", "_blank"); // CHANGE THIS TO YOUR SHORT LINK
+      showCountdown();
+    };
+
+    function showCountdown() {
+      btn.disabled = true;
+      btn.innerText = "✅ Already Clicked Today";
+      timer.style.display = "block";
+      status.innerText = "✔️ Your click has been counted for today.";
+
+      let targetTime = parseInt(localStorage.getItem("clickTime")) + 24 * 60 * 60 * 1000;
+      updateTimer();
+
+      function updateTimer() {
+        const now = new Date().getTime();
+        const remaining = targetTime - now;
+
+        if (remaining <= 0) {
+          localStorage.removeItem("clickTime");
+          location.reload();
+          return;
+        }
+
+        const hours = Math.floor(remaining / (1000 * 60 * 60));
+        const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
+
+        timer.innerText = `${hours}h ${minutes}m ${seconds}s`;
+
+        setTimeout(updateTimer, 1000);
+      }
+    }
+  </script>
+</body>
+</html>
