@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thank You!</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+      animation: fadeIn 1s ease-in;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    h1 {
+      font-size: 2.2em;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 1.1em;
+      margin: 5px 0;
+    }
+    .redirect {
+      margin-top: 20px;
+      font-size: 1.3em;
+      color: #ffcc00;
+    }
+    .button {
+      background-color: #00ffcc;
+      color: #000;
+      padding: 10px 20px;
+      margin-top: 15px;
+      text-decoration: none;
+      border-radius: 20px;
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+  <h1>✅ THANK YOU FOR YOUR DAILY CLICK!</h1>
+  <p>Your support means the world! 🫠</p>
+
+  <h3>📸 Send your screenshot to <span style="color:#ffeb3b">@muskchatt</span></h3>
+
+  <p><b>How to Earn Your Playlist Reward:</b></p>
+  <p>Send your Click Unlocked screenshot every day.</p>
+  <p>On the 7th day, include all screenshots and tag the Owner.</p>
+  <p>🎉 Reward = Playlist Access</p>
+  <p>⏳ Validity: 1 Week</p>
+
+  <p><b>Owner:</b> @nubcarder</p>
+  <p><b>Admins:</b> @Ben10bhai, @DEMON_IS_BACK1</p>
+
+  <div class="redirect" id="redirectText">⏳ Redirecting in <span id="countdown">20</span>s...</div>
+  <a href="index.html" class="button">Redirect Now</a>
+
+  <script>
+    localStorage.setItem("clickUnlocked", Date.now().toString());
+
+    let seconds = 20;
+    const countdownEl = document.getElementById("countdown");
+    const interval = setInterval(() => {
+      seconds--;
+      countdownEl.textContent = seconds;
+      if (seconds === 0) {
+        clearInterval(interval);
+        window.location.href = "index.html";
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
